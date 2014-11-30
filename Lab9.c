@@ -66,11 +66,12 @@ int main(int argc, char *argv[ ])
         printf("The name of the file is missing!\n");
         return 0;
     }
-    else
+    else{
     	printf("Test 1\n");
         readfromfile(argv[1],waitlist); //reads from the txt file + adds to list
     	pthread_create(&thr, NULL, autosaver, (void*)waitlist);
     	printf("Autosave Function worked!\n")
+    }
 
 	while(1)
 	{
@@ -152,16 +153,16 @@ void *autosaver(void *waitlist){
 
 		for(i=0;i<4;i++){
 
-			while(list!=NULL){
-
+			while(list->head[i]!=NULL){
 				fwrite(list->head[i],sizeof(NODE),1,bp);
 				list->head[i] = list->head[i]->next;
-			}
-
+				}
 			fclose(bp);
 			pthread_mutex_unlock(&mutex);
 
 		}
+
+
 		sleep(5);
 	}
 
