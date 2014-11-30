@@ -13,4 +13,4 @@ clean:
 	rm -f $(EXE) $(OBJ)
 
 run:
-	./$(EXE) f1.txt f2.txt
+	./$(EXE) f1.txt
