@@ -152,10 +152,13 @@ void *autosaver(void *waitlist){
 		printf("Test 4\n");
 
 		for(i=0;i<4;i++){
+			printf("Test 5\n");
+			fflush(stdout);
 			while(list->head[i]!=NULL){
 				fwrite(list->head[i],sizeof(NODE),1,bp);
 				list->head[i] = list->head[i]->next;
 				}
+			printf("Test 6\n");
 		}
 
 		fclose(bp);
