@@ -45,7 +45,6 @@ void displayb();
 
 int main(int argc, char *argv[ ])
 {
-	printf("Test 1\n");
 	//input from scanf()
 	LIST *waitlist = (LIST*)malloc(sizeof(LIST));
 	int i;
@@ -54,16 +53,12 @@ int main(int argc, char *argv[ ])
 		waitlist->tail[i] = NULL;
 		}
 
-	printf("Test 2\n");
-
 	pthread_t thr;
 	pthread_mutex_init(&mutex,NULL); //initialize
 
 	int command;
     char name[ARRAYSIZE];
 	int number;
-
-	printf("Test 3\n");
     
     //add names and numbers from the text file
     //if the file doesnt exist, return error
@@ -72,9 +67,9 @@ int main(int argc, char *argv[ ])
         return 0;
     }
     else
-    	printf("Test 4\n");
         readfromfile(argv[1],waitlist); //reads from the txt file + adds to list
     	pthread_create(&thr, NULL, autosaver, (void*)waitlist);
+    	printf("Autosave Function worked!\n")
 
 	while(1)
 	{
@@ -139,12 +134,16 @@ int main(int argc, char *argv[ ])
 void *autosaver(void *waitlist){
 
 	LIST *list = (LIST *)waitlist;
+	int i;
 
 	while(1){
 
 		pthread_mutex_lock(&mutex);
-		FILE *bp = fopen("binary.bin","wb");
-		int i;
+
+		if ((FILE *bp = fopen("binary.bin","wb")) == NULL)
+			printf("Cannot open binary.bin\n");
+		//FILE *bp = fopen("binary.bin","wb");
+
 		for(i=0;i<4;i++){
 
 			while(list!=NULL){
