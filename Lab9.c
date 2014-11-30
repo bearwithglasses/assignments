@@ -152,17 +152,14 @@ void *autosaver(void *waitlist){
 		printf("Test 4\n");
 
 		for(i=0;i<4;i++){
-
 			while(list->head[i]!=NULL){
 				fwrite(list->head[i],sizeof(NODE),1,bp);
 				list->head[i] = list->head[i]->next;
 				}
-			fclose(bp);
-			pthread_mutex_unlock(&mutex);
-
 		}
 
-
+		fclose(bp);
+		pthread_mutex_unlock(&mutex);
 		sleep(5);
 	}
 
