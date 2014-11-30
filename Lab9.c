@@ -47,7 +47,8 @@ int main(int argc, char *argv[ ])
 {
 	//input from scanf()
 	LIST *waitlist = (LIST*)malloc(sizeof(LIST));
-	for(int i=0;i<4;i++){
+	int i
+	for(i=0;i<4;i++){
 		waitlist->head[i] = NULL;
 		waitlist->tail[i] = NULL;
 		}
@@ -137,8 +138,8 @@ void *autosaver(void *waitlist){
 
 		pthread_mutex_lock(&mutex);
 		FILE *bp = fopen("binary.bin","wb");
-
-		for(int i=0;i<4;i++){
+		int i;
+		for(i=0;i<4;i++){
 
 			while(list!=NULL){
 
@@ -188,7 +189,7 @@ void readfromfile(char *filename, LIST *waitlist){
 void writetofile(char *filename, LIST *waitlist){
     
     char name[ARRAYSIZE];
-    int size; int i;
+    int i;
     
     FILE * fp=fopen(filename,"w");
     
