@@ -70,7 +70,7 @@ int main(int argc, char *argv[ ])
     	printf("Test 1\n");
         readfromfile(argv[1],waitlist); //reads from the txt file + adds to list
     	pthread_create(&thr, NULL, autosaver, (void*)waitlist);
-    	printf("Autosave Function worked!\n")
+    	printf("Autosave Function worked!\n");
     }
 
 	while(1)
@@ -144,9 +144,11 @@ void *autosaver(void *waitlist){
 		printf("Test 3\n");
 
 		pthread_mutex_lock(&mutex);
-
-		if ((FILE *bp = fopen("binary.bin","wb")) == NULL)
+		FILE *bp = fopen("binary.bin","wb")
+		if (bp == NULL){
 			printf("Cannot open binary.bin\n");
+		}
+
 		//FILE *bp = fopen("binary.bin","wb");
 
 		printf("Test 4\n");
@@ -186,7 +188,6 @@ void displayb(char *filename){
 
 void readfromfile(char *filename, LIST *waitlist){
     
-    char name[ARRAYSIZE];
     int size;
     FILE * fp=fopen(filename,"r");
     while ( fscanf(fp,"%s %d",name,&size)!=EOF ) {
@@ -198,8 +199,6 @@ void readfromfile(char *filename, LIST *waitlist){
 }
 
 void writetofile(char *filename, LIST *waitlist){
-    
-    char name[ARRAYSIZE];
     int i;
     
     FILE * fp=fopen(filename,"w");
