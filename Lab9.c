@@ -47,7 +47,7 @@ int main(int argc, char *argv[ ])
 {
 	//input from scanf()
 	LIST *waitlist = (LIST*)malloc(sizeof(LIST));
-	int i
+	int i;
 	for(i=0;i<4;i++){
 		waitlist->head[i] = NULL;
 		waitlist->tail[i] = NULL;
