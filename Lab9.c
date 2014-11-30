@@ -67,10 +67,9 @@ int main(int argc, char *argv[ ])
         return 0;
     }
     else{
-    	printf("Test 1\n");
         readfromfile(argv[1],waitlist); //reads from the txt file + adds to list
     	pthread_create(&thr, NULL, autosaver, (void*)waitlist);
-    	printf("Autosave Function worked!\n")
+    	printf("Autosave Function worked!\n");
     }
 
 	while(1)
@@ -135,30 +134,24 @@ int main(int argc, char *argv[ ])
 
 void *autosaver(void *waitlist){
 
-	printf("Test 2\n");
 	LIST *list = (LIST *)waitlist;
 	int i;
 
 	while(1){
 
-		printf("Test 3\n");
-
 		pthread_mutex_lock(&mutex);
 
-		if ((FILE *bp = fopen("binary.bin","wb")) == NULL)
+		FILE *bp = fopen("binary.bin","wb");
+		if ( bp == NULL)
 			printf("Cannot open binary.bin\n");
 		//FILE *bp = fopen("binary.bin","wb");
 
-		printf("Test 4\n");
-
-		for(i=0;i<4;i++){
-			printf("Test 5\n");
-			fflush(stdout);
+		for(i=0;i<4;i++)
+		{
 			while(list->head[i]!=NULL){
 				fwrite(list->head[i],sizeof(NODE),1,bp);
 				list->head[i] = list->head[i]->next;
 				}
-			printf("Test 6\n");
 		}
 
 		fclose(bp);
@@ -188,8 +181,9 @@ void readfromfile(char *filename, LIST *waitlist){
     
     char name[ARRAYSIZE];
     int size;
-    FILE * fp=fopen(filename,"r");
-    while ( fscanf(fp,"%s %d",name,&size)!=EOF ) {
+    FILE *fp = fopen(filename,"r");
+    while ( fscanf(fp,"%s %d",name,&size)!=EOF )
+	{
         insert(waitlist,name,size);
     }
     
