@@ -45,6 +45,7 @@ void displayb();
 
 int main(int argc, char *argv[ ])
 {
+	printf("Test 1\n");
 	//input from scanf()
 	LIST *waitlist = (LIST*)malloc(sizeof(LIST));
 	int i;
@@ -53,12 +54,16 @@ int main(int argc, char *argv[ ])
 		waitlist->tail[i] = NULL;
 		}
 
+	printf("Test 2\n");
+
 	pthread_t thr;
 	pthread_mutex_init(&mutex,NULL); //initialize
 
 	int command;
     char name[ARRAYSIZE];
 	int number;
+
+	printf("Test 3\n");
     
     //add names and numbers from the text file
     //if the file doesnt exist, return error
@@ -67,6 +72,7 @@ int main(int argc, char *argv[ ])
         return 0;
     }
     else
+    	printf("Test 4\n");
         readfromfile(argv[1],waitlist); //reads from the txt file + adds to list
     	pthread_create(&thr, NULL, autosaver, (void*)waitlist);
 
@@ -159,7 +165,6 @@ void *autosaver(void *waitlist){
 void displayb(char *filename){
 
 	NODE temp;
-
 	pthread_mutex_lock(&mutex);
 	FILE *bp = fopen(filename,"rb");
 
@@ -183,7 +188,7 @@ void readfromfile(char *filename, LIST *waitlist){
     }
     
     fclose(fp);
-
+ 
 }
 
 void writetofile(char *filename, LIST *waitlist){
