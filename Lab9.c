@@ -144,7 +144,7 @@ void *autosaver(void *waitlist){
 		printf("Test 3\n");
 
 		pthread_mutex_lock(&mutex);
-		FILE *bp = fopen("binary.bin","wb")
+		FILE *bp = fopen("binary.bin","wb");
 		if (bp == NULL){
 			printf("Cannot open binary.bin\n");
 		}
@@ -188,6 +188,7 @@ void displayb(char *filename){
 
 void readfromfile(char *filename, LIST *waitlist){
     
+    char name[ARRAYSIZE];
     int size;
     FILE * fp=fopen(filename,"r");
     while ( fscanf(fp,"%s %d",name,&size)!=EOF ) {
