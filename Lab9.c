@@ -167,8 +167,7 @@ void displayb(char *filename){
 	FILE *bp = fopen(filename,"rb");
 
 	while(fread(&temp,sizeof(NODE),1,bp) == 1){
-
-		printf("name: %s tablenumber: %d",temp.name,temp.number);
+		printf("name: %s tablenumber: %d",temp->name,temp->number);
 	}
 
 	fclose(bp);
