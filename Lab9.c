@@ -168,9 +168,13 @@ void displayb(char *filename){
 
 	FILE *bp = fopen(filename,"rb");
 
-	while(fread(&temp,sizeof(NODE),1,bp) == 1){
-		printf("name: %s tablenumber: %d",temp->name,temp->number);
+	puts("Before the while");fflush(stdout);
+
+	while(fread(temp,sizeof(NODE),1,bp) == 1){
+		printf("name: %s\ntablenumber: %d\n",temp->name,temp->number);
 	}
+
+	puts("After the while");fflush(stdout);
 
 	fclose(bp);
 	pthread_mutex_unlock(&mutex);
