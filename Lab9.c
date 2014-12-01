@@ -119,7 +119,7 @@ int main(int argc, char *argv[ ])
 				break;
 
 			case READB:
-				displayb();
+				displayb("binary.bin");
 				break;
 
 			default:
@@ -163,7 +163,7 @@ void *autosaver(void *waitlist){
 void displayb(char *filename){
 
 	NODE *temp = (NODE*)malloc(sizeof(NODE));
-	
+
 	pthread_mutex_lock(&mutex);
 
 	FILE *bp = fopen(filename,"rb");
