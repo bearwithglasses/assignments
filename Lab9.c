@@ -162,8 +162,10 @@ void *autosaver(void *waitlist){
 
 void displayb(char *filename){
 
-	NODE temp;
+	NODE *temp = (NODE*)malloc(sizeof(NODE));
+	
 	pthread_mutex_lock(&mutex);
+
 	FILE *bp = fopen(filename,"rb");
 
 	while(fread(&temp,sizeof(NODE),1,bp) == 1){
