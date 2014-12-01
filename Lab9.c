@@ -146,10 +146,10 @@ void *autosaver(void *waitlist){
 		}
 
 		for(i=0;i<4;i++){
-			NODE *curr = waitlist->head[i];
-			while(curr->head[i]!=NULL){
-				fwrite(curr->head[i],sizeof(NODE),1,bp);
-				curr->head[i] = curr->head[i]->next;
+			NODE *curr = list->head[i];
+			while(curr!=NULL){
+				fwrite(curr,sizeof(NODE),1,bp);
+				curr = curr->next;
 				}
 		}
 
